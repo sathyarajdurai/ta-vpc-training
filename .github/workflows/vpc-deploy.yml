@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
       
       - name: AWS Authentication
-        uses: aws-actions/configure/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::151926427169:role/github-actions-iodc
           aws-region: eu-west-1
