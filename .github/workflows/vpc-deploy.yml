@@ -6,7 +6,7 @@ on:
 jobs:
   terraform-deploy:
     runs-on:  ubuntu-latest
-    permission:
+    permissions:
       packages: write
       contents: read
       id-token: write
