@@ -34,6 +34,15 @@ resource "aws_subnet" "data" {
   }
 }
 
+resource "aws_db_subnet_group" "subnet_group" {
+  name       = "subnets"
+  subnet_ids = [aws_subnet.public.id, aws_subnet.private.id, aws_subnet.data.id]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.lab_vpc.id
 
