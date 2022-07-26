@@ -37,27 +37,6 @@ resource "aws_subnet" "data" {
   }
 }
 
-# resource "aws_subnet" "rds_public" {
-#   vpc_id     = aws_vpc.lab_vpc.id
-#   cidr_block = "192.168.4.0/24"
-#   availability_zone = "eu-west-1b"
-
-#   tags = {
-#     Name = "publicrds"
-#   }
-# }
-
-# resource "aws_subnet" "rds_private" {
-#   vpc_id     = aws_vpc.lab_vpc.id
-#   cidr_block = "192.168.5.0/24"
-#   availability_zone = "eu-west-1c"
-
-#   tags = {
-#     Name = "privaterds"
-#   }
-# }
-
-
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.lab_vpc.id
