@@ -10,6 +10,7 @@ resource "aws_vpc" "lab_vpc" {
 resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.lab_vpc.id
   cidr_block = var.cidr_public
+  availability_zone = "eu-west-1a"
 
   tags = {
     Name = "public"
@@ -19,6 +20,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.lab_vpc.id
   cidr_block = var.cidr_private
+  availability_zone = "eu-west-1b"
 
   tags = {
     Name = "private"
@@ -28,20 +30,34 @@ resource "aws_subnet" "private" {
 resource "aws_subnet" "data" {
   vpc_id     = aws_vpc.lab_vpc.id
   cidr_block = var.cidr_data
+  availability_zone = "eu-west-1c"
 
   tags = {
     Name = "data"   
   }
 }
 
-resource "aws_db_subnet_group" "subnet_group" {
-  name       = "subnets"
-  subnet_ids = [aws_subnet.public.id, aws_subnet.private.id, aws_subnet.data.id]
+# resource "aws_subnet" "rds_public" {
+#   vpc_id     = aws_vpc.lab_vpc.id
+#   cidr_block = "192.168.4.0/24"
+#   availability_zone = "eu-west-1b"
 
-  tags = {
-    Name = "My DB subnet group"
-  }
-}
+#   tags = {
+#     Name = "publicrds"
+#   }
+# }
+
+# resource "aws_subnet" "rds_private" {
+#   vpc_id     = aws_vpc.lab_vpc.id
+#   cidr_block = "192.168.5.0/24"
+#   availability_zone = "eu-west-1c"
+
+#   tags = {
+#     Name = "privaterds"
+#   }
+# }
+
+
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.lab_vpc.id
