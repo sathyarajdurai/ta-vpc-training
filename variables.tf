@@ -3,6 +3,10 @@ variable "vpc_name" {
     type = string
 }
 
+variable "aws_region" {
+    description = "This is the region of vpc"
+}
+
 variable "vpc_cidr" {
     description = "This is the CIDR of vpc"
 }
@@ -16,5 +20,6 @@ variable "cidr_private" {
 }
 
 variable "cidr_data" {
+    type = map
     description = "This is the CIDR of data vpc"
 }

@@ -28,12 +28,14 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "data" {
+  for_each = var.cidr_data
+
   vpc_id     = aws_vpc.lab_vpc.id
-  cidr_block = var.cidr_data
-  availability_zone = "eu-west-1c"
+  cidr_block = each.value
+  availability_zone = join("",[var.aws_region, each.key])
 
   tags = {
-    Name = "data"   
+    Name = join("-",["data", each.key])
   }
 }
 
